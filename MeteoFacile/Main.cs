@@ -1,7 +1,8 @@
-﻿using MeteoFacile.Classes;
+﻿using System.Windows.Forms;
+using MeteoFacile.Classes;
 using Newtonsoft.Json;
 using System.Linq;
-using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace MeteoFacile
 {
@@ -12,15 +13,15 @@ namespace MeteoFacile
         public Main()
         {
             InitializeComponent();
-            OnMainLoad();
+            WeatherUpdate(44.4938, 11.3387);
         }
 
-        private async void OnMainLoad()
+        private async void WeatherUpdate(double latitude, double longitude)
         {
-            string url = "https://api.open-meteo.com/v1/forecast?latitude=44.4938&longitude=11.3387&hourly=temperature_2m,rain,visibility";
-            (System.Net.HttpStatusCode StatusCode, string Response) tuple = await HttpRequest.Get(url);
-            weatherData = JsonConvert.DeserializeObject<WeatherData>(tuple.Response);
-            if (tuple.StatusCode != System.Net.HttpStatusCode.OK)
+            string url = $"https://api.open-meteo.com/v1/forecast?latitude={latitude}&longitude={longitude}&hourly=temperature_2m,rain,visibility";
+            (System.Net.HttpStatusCode StatusCode, string Response) = await HttpRequest.Get(url);
+            weatherData = JsonConvert.DeserializeObject<WeatherData>(Response);
+            if (StatusCode != System.Net.HttpStatusCode.OK)
             {
                 MessageBox.Show("Errore", "Errore durante il caricamento dei dati del meteo!");
                 return;
@@ -37,6 +38,14 @@ namespace MeteoFacile
                 temperatureSeries.Points.AddXY(weatherData.Hourly.Time.ElementAt(i), weatherData.Hourly.Temperature2m.ElementAt(i));
                 //visibilitySeries.Points.AddY(weatherData.Hourly.Visibility.ElementAt(i));
             }
+        }
+
+        private async void citySearch_Click(object sender, System.EventArgs e)
+        {
+            string cityName = citySearch.Text;
+            string url = "https://nominatim.openstreetmap.org/search.php?format=jsonv2&q=london";
+            (System.Net.HttpStatusCode StatusCode, string Response) = await HttpRequest.Get(url);
+            List<City> myDeserializedClass = JsonConvert.DeserializeObject<List<City>>(Response);
         }
     }
 }

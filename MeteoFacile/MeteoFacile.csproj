@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\City.cs" />
     <Compile Include="Classes\HttpRequest.cs" />
     <Compile Include="Classes\WeatherData.cs" />
     <Compile Include="Main.cs">

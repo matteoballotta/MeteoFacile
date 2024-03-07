@@ -33,6 +33,8 @@
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.weatherChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.cityInput = new System.Windows.Forms.TextBox();
+            this.citySearch = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.weatherChart)).BeginInit();
             this.SuspendLayout();
             // 
@@ -42,7 +44,7 @@
             this.weatherChart.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.weatherChart.Legends.Add(legend1);
-            this.weatherChart.Location = new System.Drawing.Point(23, 101);
+            this.weatherChart.Location = new System.Drawing.Point(28, 198);
             this.weatherChart.Name = "weatherChart";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
@@ -58,21 +60,43 @@
             this.weatherChart.TabIndex = 1;
             this.weatherChart.Text = "weatherChart";
             // 
+            // cityInput
+            // 
+            this.cityInput.Location = new System.Drawing.Point(12, 12);
+            this.cityInput.Name = "cityInput";
+            this.cityInput.Size = new System.Drawing.Size(195, 20);
+            this.cityInput.TabIndex = 2;
+            // 
+            // citySearch
+            // 
+            this.citySearch.Location = new System.Drawing.Point(213, 10);
+            this.citySearch.Name = "citySearch";
+            this.citySearch.Size = new System.Drawing.Size(75, 23);
+            this.citySearch.TabIndex = 3;
+            this.citySearch.Text = "button1";
+            this.citySearch.UseVisualStyleBackColor = true;
+            this.citySearch.Click += new System.EventHandler(this.citySearch_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1369, 450);
+            this.ClientSize = new System.Drawing.Size(1369, 523);
+            this.Controls.Add(this.citySearch);
+            this.Controls.Add(this.cityInput);
             this.Controls.Add(this.weatherChart);
             this.Name = "Main";
             this.Text = "Main";
             ((System.ComponentModel.ISupportInitialize)(this.weatherChart)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
         private System.Windows.Forms.DataVisualization.Charting.Chart weatherChart;
+        private System.Windows.Forms.TextBox cityInput;
+        private System.Windows.Forms.Button citySearch;
     }
 }
 
