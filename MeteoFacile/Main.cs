@@ -38,6 +38,17 @@ namespace MeteoFacile
                 temperatureSeries.Points.AddXY(weatherData.Hourly.Time.ElementAt(i), weatherData.Hourly.Temperature2m.ElementAt(i));
                 //visibilitySeries.Points.AddY(weatherData.Hourly.Visibility.ElementAt(i));
             }
+
+	    double highestTemperature = weatherData.Hourly.Temperature2m.Max();
+            int indexHighestTemperature = weatherData.Hourly.Temperature2m.IndexOf(highestTemperature);
+            var timeOfHighestTemperature = weatherData.Hourly.Time[indexHighestTemperature];
+
+            double lowestTemperature = weatherData.Hourly.Temperature2m.Min();
+            int indexLowestTemperature = weatherData.Hourly.Temperature2m.IndexOf(lowestTemperature); 
+            var timeOfLowestTemperature = weatherData.Hourly.Time[indexLowestTemperature];
+
+            MessageBox.Show($"La temperatura più alta ({highestTemperature}°C) è stata registrata alle {timeOfHighestTemperature}.", "Temperatura Massima");
+            MessageBox.Show($"La temperatura più bassa ({lowestTemperature}°C) è stata registrata alle {timeOfLowestTemperature}.", "Temperatura Minima");
         }
 
         private async void citySearch_Click(object sender, System.EventArgs e)
