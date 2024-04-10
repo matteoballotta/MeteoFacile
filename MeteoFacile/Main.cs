@@ -13,7 +13,6 @@ namespace MeteoFacile
         public Main()
         {
             InitializeComponent();
-            WeatherUpdate(44.4938, 11.3387);
         }
 
         private async void WeatherUpdate(double latitude, double longitude)
@@ -33,10 +32,14 @@ namespace MeteoFacile
             var visibilitySeries = weatherChart.Series["Visibilita"];
             visibilitySeries.Points.Clear();
 
+            var rainSeries = rainChart.Series["Pioggia"];
+            rainSeries.Points.Clear();
+
             for (int i = 0; i < weatherData.Hourly.Time.Count; i++)
             {
                 temperatureSeries.Points.AddXY(weatherData.Hourly.Time.ElementAt(i), weatherData.Hourly.Temperature2m.ElementAt(i));
                 //visibilitySeries.Points.AddY(weatherData.Hourly.Visibility.ElementAt(i));
+                rainSeries.Points.AddXY(weatherData.Hourly.Time.ElementAt(i), weatherData.Hourly.Rain.ElementAt(i));
             }
 
 	    double highestTemperature = weatherData.Hourly.Temperature2m.Max();
@@ -51,12 +54,26 @@ namespace MeteoFacile
             MessageBox.Show($"La temperatura più bassa ({lowestTemperature}°C) è stata registrata alle {timeOfLowestTemperature}.", "Temperatura Minima");
         }
 
-        private async void citySearch_Click(object sender, System.EventArgs e)
+        private async void CitySearch_Click(object sender, System.EventArgs e)
         {
-            string cityName = citySearch.Text;
-            string url = "https://nominatim.openstreetmap.org/search.php?format=jsonv2&q=london";
+            const string key = "6616a0658d0bd896308578ohi7b00a6";
+            string cityName = cityInput.Text;
+            string url = $"https://geocode.maps.co/search?q={cityName}&api_key={key}";
             (System.Net.HttpStatusCode StatusCode, string Response) = await HttpRequest.Get(url);
-            List<City> myDeserializedClass = JsonConvert.DeserializeObject<List<City>>(Response);
+            if(StatusCode != System.Net.HttpStatusCode.OK)
+            {
+                MessageBox.Show("Errore durante la ricerca della località!", "Errore");
+                return;
+            }
+            if(JsonConvert.DeserializeObject<List<City>>(Response).Count == 0)
+            {
+                MessageBox.Show("Località non disponibile!", "Errore");
+                return;
+            }
+            City selectedCity = JsonConvert.DeserializeObject<List<City>>(Response).First();
+
+            ShownDataCityName.Text = selectedCity.DisplayName;
+            WeatherUpdate(double.Parse(selectedCity.Lat), double.Parse(selectedCity.Lon));
         }
     }
 }
