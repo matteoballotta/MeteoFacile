@@ -16,6 +16,9 @@ namespace MeteoFacile.Classes
 
         [JsonProperty("visibility")]
         public List<double> Visibility { get; set; }
+
+        [JsonProperty("wind_speed_10m")]
+        public List<double> WindSpeed10m { get; set; }
     }
 
     public class HourlyUnits
@@ -31,6 +34,9 @@ namespace MeteoFacile.Classes
 
         [JsonProperty("visibility")]
         public string Visibility { get; set; }
+
+        [JsonProperty("wind_speed_10m")]
+        public string WindSpeed10m { get; set; }
     }
 
     public class WeatherData
