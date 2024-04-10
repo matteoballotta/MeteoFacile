@@ -38,80 +38,71 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            this.ShownCityName = new System.Windows.Forms.Label();
-            this.HighestTemperature = new System.Windows.Forms.Label();
-            this.LowestTemperature = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.rainChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.weatherChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.windChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            ((System.ComponentModel.ISupportInitialize)(this.rainChart)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.weatherChart)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.windChart)).BeginInit();
+            this.ShownCityNameLabel = new System.Windows.Forms.Label();
+            this.HighestTemperatureLabel = new System.Windows.Forms.Label();
+            this.LowestTemperatureLabel = new System.Windows.Forms.Label();
+            this.RainChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.WeatherChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.WindChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            ((System.ComponentModel.ISupportInitialize)(this.RainChart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.WeatherChart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.WindChart)).BeginInit();
             this.SuspendLayout();
             // 
-            // ShownCityName
+            // ShownCityNameLabel
             // 
-            this.ShownCityName.AutoSize = true;
-            this.ShownCityName.Location = new System.Drawing.Point(12, 15);
-            this.ShownCityName.Name = "ShownCityName";
-            this.ShownCityName.Size = new System.Drawing.Size(95, 13);
-            this.ShownCityName.TabIndex = 8;
-            this.ShownCityName.Text = "Caricamento dati...";
+            this.ShownCityNameLabel.AutoSize = true;
+            this.ShownCityNameLabel.Location = new System.Drawing.Point(12, 15);
+            this.ShownCityNameLabel.Name = "ShownCityNameLabel";
+            this.ShownCityNameLabel.Size = new System.Drawing.Size(95, 13);
+            this.ShownCityNameLabel.TabIndex = 8;
+            this.ShownCityNameLabel.Text = "Caricamento dati...";
             // 
-            // HighestTemperature
+            // HighestTemperatureLabel
             // 
-            this.HighestTemperature.AutoSize = true;
-            this.HighestTemperature.Location = new System.Drawing.Point(12, 28);
-            this.HighestTemperature.Name = "HighestTemperature";
-            this.HighestTemperature.Size = new System.Drawing.Size(0, 13);
-            this.HighestTemperature.TabIndex = 11;
+            this.HighestTemperatureLabel.AutoSize = true;
+            this.HighestTemperatureLabel.Location = new System.Drawing.Point(12, 28);
+            this.HighestTemperatureLabel.Name = "HighestTemperatureLabel";
+            this.HighestTemperatureLabel.Size = new System.Drawing.Size(0, 13);
+            this.HighestTemperatureLabel.TabIndex = 11;
             // 
-            // LowestTemperature
+            // LowestTemperatureLabel
             // 
-            this.LowestTemperature.AutoSize = true;
-            this.LowestTemperature.Location = new System.Drawing.Point(12, 41);
-            this.LowestTemperature.Name = "LowestTemperature";
-            this.LowestTemperature.Size = new System.Drawing.Size(0, 13);
-            this.LowestTemperature.TabIndex = 12;
+            this.LowestTemperatureLabel.AutoSize = true;
+            this.LowestTemperatureLabel.Location = new System.Drawing.Point(12, 41);
+            this.LowestTemperatureLabel.Name = "LowestTemperatureLabel";
+            this.LowestTemperatureLabel.Size = new System.Drawing.Size(0, 13);
+            this.LowestTemperatureLabel.TabIndex = 12;
             // 
-            // label1
+            // RainChart
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(693, 323);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 13);
-            this.label1.TabIndex = 10;
-            // 
-            // rainChart
-            // 
-            this.rainChart.BackColor = System.Drawing.Color.Transparent;
-            this.rainChart.BackImageAlignment = System.Windows.Forms.DataVisualization.Charting.ChartImageAlignmentStyle.Center;
+            this.RainChart.BackColor = System.Drawing.Color.Transparent;
+            this.RainChart.BackImageAlignment = System.Windows.Forms.DataVisualization.Charting.ChartImageAlignmentStyle.Center;
             chartArea1.Name = "ChartArea1";
-            this.rainChart.ChartAreas.Add(chartArea1);
+            this.RainChart.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
-            this.rainChart.Legends.Add(legend1);
-            this.rainChart.Location = new System.Drawing.Point(15, 363);
-            this.rainChart.Name = "rainChart";
+            this.RainChart.Legends.Add(legend1);
+            this.RainChart.Location = new System.Drawing.Point(15, 363);
+            this.RainChart.Name = "RainChart";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StepLine;
             series1.Legend = "Legend1";
             series1.Name = "Pioggia";
-            this.rainChart.Series.Add(series1);
-            this.rainChart.Size = new System.Drawing.Size(678, 300);
-            this.rainChart.TabIndex = 9;
-            this.rainChart.Text = "chart1";
+            this.RainChart.Series.Add(series1);
+            this.RainChart.Size = new System.Drawing.Size(678, 300);
+            this.RainChart.TabIndex = 9;
+            this.RainChart.Text = "chart1";
             // 
-            // weatherChart
+            // WeatherChart
             // 
-            this.weatherChart.BackColor = System.Drawing.Color.Transparent;
-            this.weatherChart.BackImageAlignment = System.Windows.Forms.DataVisualization.Charting.ChartImageAlignmentStyle.Center;
+            this.WeatherChart.BackColor = System.Drawing.Color.Transparent;
+            this.WeatherChart.BackImageAlignment = System.Windows.Forms.DataVisualization.Charting.ChartImageAlignmentStyle.Center;
             chartArea2.Name = "ChartArea1";
-            this.weatherChart.ChartAreas.Add(chartArea2);
+            this.WeatherChart.ChartAreas.Add(chartArea2);
             legend2.Name = "Legend1";
-            this.weatherChart.Legends.Add(legend2);
-            this.weatherChart.Location = new System.Drawing.Point(12, 57);
-            this.weatherChart.Name = "weatherChart";
+            this.WeatherChart.Legends.Add(legend2);
+            this.WeatherChart.Location = new System.Drawing.Point(12, 57);
+            this.WeatherChart.Name = "WeatherChart";
             series2.ChartArea = "ChartArea1";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series2.Legend = "Legend1";
@@ -120,62 +111,60 @@
             series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series3.Legend = "Legend1";
             series3.Name = "Visibilita";
-            this.weatherChart.Series.Add(series2);
-            this.weatherChart.Series.Add(series3);
-            this.weatherChart.Size = new System.Drawing.Size(1304, 300);
-            this.weatherChart.TabIndex = 7;
-            this.weatherChart.Text = "weatherChart";
+            this.WeatherChart.Series.Add(series2);
+            this.WeatherChart.Series.Add(series3);
+            this.WeatherChart.Size = new System.Drawing.Size(1304, 300);
+            this.WeatherChart.TabIndex = 7;
+            this.WeatherChart.Text = "weatherChart";
             // 
-            // windChart
+            // WindChart
             // 
-            this.windChart.BackColor = System.Drawing.Color.Transparent;
-            this.windChart.BackImageAlignment = System.Windows.Forms.DataVisualization.Charting.ChartImageAlignmentStyle.Center;
+            this.WindChart.BackColor = System.Drawing.Color.Transparent;
+            this.WindChart.BackImageAlignment = System.Windows.Forms.DataVisualization.Charting.ChartImageAlignmentStyle.Center;
             chartArea3.Name = "ChartArea1";
-            this.windChart.ChartAreas.Add(chartArea3);
+            this.WindChart.ChartAreas.Add(chartArea3);
             legend3.Name = "Legend1";
-            this.windChart.Legends.Add(legend3);
-            this.windChart.Location = new System.Drawing.Point(690, 363);
-            this.windChart.Name = "windChart";
-            this.windChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Bright;
+            this.WindChart.Legends.Add(legend3);
+            this.WindChart.Location = new System.Drawing.Point(690, 363);
+            this.WindChart.Name = "WindChart";
+            this.WindChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Bright;
             series4.ChartArea = "ChartArea1";
             series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StepLine;
             series4.Legend = "Legend1";
             series4.Name = "Velocità vento";
-            this.windChart.Series.Add(series4);
-            this.windChart.Size = new System.Drawing.Size(678, 300);
-            this.windChart.TabIndex = 13;
-            this.windChart.Text = "chart1";
+            this.WindChart.Series.Add(series4);
+            this.WindChart.Size = new System.Drawing.Size(678, 300);
+            this.WindChart.TabIndex = 13;
+            this.WindChart.Text = "chart1";
             // 
             // WeatherForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1380, 692);
-            this.Controls.Add(this.windChart);
-            this.Controls.Add(this.LowestTemperature);
-            this.Controls.Add(this.HighestTemperature);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.rainChart);
-            this.Controls.Add(this.ShownCityName);
-            this.Controls.Add(this.weatherChart);
+            this.Controls.Add(this.WindChart);
+            this.Controls.Add(this.LowestTemperatureLabel);
+            this.Controls.Add(this.HighestTemperatureLabel);
+            this.Controls.Add(this.RainChart);
+            this.Controls.Add(this.ShownCityNameLabel);
+            this.Controls.Add(this.WeatherChart);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "WeatherForm";
             this.Text = "Dati metereologici";
-            ((System.ComponentModel.ISupportInitialize)(this.rainChart)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.weatherChart)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.windChart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RainChart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.WeatherChart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.WindChart)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Label ShownCityName;
-        private System.Windows.Forms.Label HighestTemperature;
-        private System.Windows.Forms.Label LowestTemperature;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataVisualization.Charting.Chart rainChart;
-        private System.Windows.Forms.DataVisualization.Charting.Chart weatherChart;
-        private System.Windows.Forms.DataVisualization.Charting.Chart windChart;
+        private System.Windows.Forms.Label ShownCityNameLabel;
+        private System.Windows.Forms.Label HighestTemperatureLabel;
+        private System.Windows.Forms.Label LowestTemperatureLabel;
+        private System.Windows.Forms.DataVisualization.Charting.Chart RainChart;
+        private System.Windows.Forms.DataVisualization.Charting.Chart WeatherChart;
+        private System.Windows.Forms.DataVisualization.Charting.Chart WindChart;
     }
 }

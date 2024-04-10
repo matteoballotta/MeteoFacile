@@ -1,6 +1,6 @@
 ﻿namespace MeteoFacile
 {
-    partial class Main
+    partial class MenuForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,53 +28,53 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
-            this.cityInput = new System.Windows.Forms.TextBox();
-            this.CitySearch = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuForm));
+            this.CityInput = new System.Windows.Forms.TextBox();
+            this.CitySearchButton = new System.Windows.Forms.Button();
+            this.TitleLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // cityInput
+            // CityInput
             // 
-            this.cityInput.Location = new System.Drawing.Point(266, 44);
-            this.cityInput.Name = "cityInput";
-            this.cityInput.Size = new System.Drawing.Size(195, 20);
-            this.cityInput.TabIndex = 2;
+            this.CityInput.Location = new System.Drawing.Point(266, 44);
+            this.CityInput.Name = "CityInput";
+            this.CityInput.Size = new System.Drawing.Size(195, 20);
+            this.CityInput.TabIndex = 2;
             // 
-            // CitySearch
+            // CitySearchButton
             // 
-            this.CitySearch.Location = new System.Drawing.Point(266, 70);
-            this.CitySearch.Name = "CitySearch";
-            this.CitySearch.Size = new System.Drawing.Size(195, 23);
-            this.CitySearch.TabIndex = 3;
-            this.CitySearch.Text = "Cerca";
-            this.CitySearch.UseVisualStyleBackColor = true;
-            this.CitySearch.Click += new System.EventHandler(this.CitySearch_Click);
+            this.CitySearchButton.Location = new System.Drawing.Point(266, 70);
+            this.CitySearchButton.Name = "CitySearchButton";
+            this.CitySearchButton.Size = new System.Drawing.Size(195, 23);
+            this.CitySearchButton.TabIndex = 3;
+            this.CitySearchButton.Text = "Cerca";
+            this.CitySearchButton.UseVisualStyleBackColor = true;
+            this.CitySearchButton.Click += new System.EventHandler(this.CitySearch_Click);
             // 
-            // label1
+            // TitleLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.label1.ForeColor = System.Drawing.SystemColors.Control;
-            this.label1.Location = new System.Drawing.Point(299, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(130, 25);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Cerca località";
+            this.TitleLabel.AutoSize = true;
+            this.TitleLabel.BackColor = System.Drawing.Color.Transparent;
+            this.TitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.TitleLabel.ForeColor = System.Drawing.SystemColors.Control;
+            this.TitleLabel.Location = new System.Drawing.Point(299, 9);
+            this.TitleLabel.Name = "TitleLabel";
+            this.TitleLabel.Size = new System.Drawing.Size(130, 25);
+            this.TitleLabel.TabIndex = 5;
+            this.TitleLabel.Text = "Cerca località";
             // 
-            // Main
+            // MenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(712, 316);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.CitySearch);
-            this.Controls.Add(this.cityInput);
+            this.Controls.Add(this.TitleLabel);
+            this.Controls.Add(this.CitySearchButton);
+            this.Controls.Add(this.CityInput);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Name = "Main";
+            this.Name = "MenuForm";
             this.Text = "Menu";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -82,9 +82,9 @@
         }
 
         #endregion
-        private System.Windows.Forms.TextBox cityInput;
-        private System.Windows.Forms.Button CitySearch;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox CityInput;
+        private System.Windows.Forms.Button CitySearchButton;
+        private System.Windows.Forms.Label TitleLabel;
     }
 }
 
