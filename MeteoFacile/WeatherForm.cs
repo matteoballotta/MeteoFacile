@@ -63,6 +63,19 @@ namespace MeteoFacile
 
             LowestTemperatureLabel.Text = $"La temperatura più alta ({highestTemperature}° C) è stata registrata alle {highestTemperatureTime}.";
             HighestTemperatureLabel.Text = $"La temperatura più bassa ({lowestTemperature}° C) è stata registrata alle {lowestTemperatureTime}.";
+
+            CheckWeather(latitude, longitude);
+        
+        }
+
+        private void CheckWeather (var latitudine, var longitudine) {
+            if (weatherData != null && weatherData.Hourly != null) {
+                if (weatherData.Hourly.Temperature2m.Any (temperature => temperature > 40 || temperature < -10)) { ShowToastNotification ("Evento Atmosferico Estremo", "Temperature estreme segnalate!"); }
+                else if (weatherData.Hourly.Rain.Any (rain => rain > 20) ) { ShowToastNotification ("Evento Atmosferico Estremo", "Forte pioggia segnalata!"); }
+                else if (weatherData.Hourly.PrecipitationIntensity.Any(precipitation => precipitation > 0.7)) { ShowToastNotification("Evento Atmosferico Estremo", "Forte temporale in arrivo!"); }
+                else if (weatherData.Hourly.SnowfallDepth.Any(snowfall => snowfall > 10)) { ShowToastNotification("Evento Atmosferico Estremo", "Nevicata intensa segnalata!"); }
+                else if (weatherData.Hourly.WindSpeed.Any(windSpeed => windSpeed > 30)) { ShowToastNotification("Evento Atmosferico Estremo", "Forte vento in arrivo!"); }
+            }
         }
     }
 }
