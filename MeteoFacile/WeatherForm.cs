@@ -64,22 +64,22 @@ namespace MeteoFacile
             LowestTemperatureLabel.Text = $"La temperatura più alta ({highestTemperature}° C) è stata registrata alle {highestTemperatureTime}.";
             HighestTemperatureLabel.Text = $"La temperatura più bassa ({lowestTemperature}° C) è stata registrata alle {lowestTemperatureTime}.";
 
-            CheckWeather(latitude, longitude);
+            SendWeatherNotifications();
         
         }
 
-        private void CheckWeather (var latitudine, var longitudine) {
+        private void SendWeatherNotifications () {
             if (weatherData != null && weatherData.Hourly != null) {
-                // Avvertenze su giornate superiori a 40° o inferiori a 0°
-                if (weatherData.Hourly.Temperature2m.Any (temperature => temperature > 40 || temperature < 0)) { ShowToastNotification ("Evento Atmosferico Segnalato", "è prevista una temperatura fuori dal normale in gionrnata!"); }
-                // Avvertenze su giornate piovose come pioggie / alluvioni
-                else if (weatherData.Hourly.Rain.Any (rain => rain > 20) ) { ShowToastNotification ("Evento Atmosferico Segnalato", "Potrebbe piovere!"); }
-                // Avvertenze su giornate piovose estreme come temporali
-                else if (weatherData.Hourly.PrecipitationIntensity.Any(precipitation => precipitation > 0.7)) { ShowToastNotification("Evento Atmosferico Segnalato", "è stato avvisato dei grandi nuvoloni, potrebbe piovere un saco!"); }
-                // Avvertenze su giornate nevose
-                else if (weatherData.Hourly.SnowfallDepth.Any(snowfall => snowfall > 10)) { ShowToastNotification("Evento Atmosferico Segnalato", "Fa molto freddo, si è consigliato di prendere indumenti pesanti perché potrebbe nevicare!"); }
-                // Avvertenze su giornate ventose (con forte vento)
-                else if (weatherData.Hourly.WindSpeed.Any(windSpeed => windSpeed > 30)) { ShowToastNotification("Evento Atmosferico Segnalato", "Si sta alzando il vento, meglio indossando delle scarpe pesanti per rimanere attaccati al terreno!"); }
+                string content = "Nessun evento atmosferico estremo segnalato";
+
+                if (weatherData.Hourly.Temperature2m.Any (temperature => temperature > 40 || temperature < 0))
+                    content = "È prevista una temperatura fuori dal normale in gionrnata!";
+                else if (weatherData.Hourly.Rain.Any (rain => rain > 20) )
+                    content = "Potrebbe piovere!";
+                else if (weatherData.Hourly.WindSpeed10m.Any(windSpeed => windSpeed > 30))
+                    content = "Presta attenzione, oggi il vento assumerà velocità estreme!";
+                
+                NotificationManager.ShowToastNotification("Notifica", content);
             }
         }
     }
