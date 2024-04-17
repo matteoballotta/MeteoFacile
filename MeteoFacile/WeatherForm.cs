@@ -21,7 +21,7 @@ namespace MeteoFacile
             ShownCityNameLabel.Text = displayName;
 
             // Ottenimento dati geografici
-            string url = $"https://api.open-meteo.com/v1/forecast?latitude={latitude}&longitude={longitude}&hourly=temperature_2m,rain,visibility,wind_speed_10m";
+            string url = $"https://api.open-meteo.com/v1/forecast?latitude={latitude}&longitude={longitude}&hourly=temperature_2m,rain,visibility,wind_speed_10m,relative_humidity_2m";
             (System.Net.HttpStatusCode StatusCode, string Response) = await HttpRequest.Get(url);
             weatherData = JsonConvert.DeserializeObject<WeatherData>(Response);
             if (StatusCode != System.Net.HttpStatusCode.OK)
@@ -43,12 +43,16 @@ namespace MeteoFacile
             Series windSeries = WindChart.Series["Velocità vento"];
             windSeries.Points.Clear();
 
+            Series humiditySeries = HumidityChart.Series["Umidità"];
+            humiditySeries.Points.Clear();
+
             // Aggiunta dei dati ai grafici
             for (int i = 0; i < weatherData.Hourly.Time.Count; i++)
             {
                 temperatureSeries.Points.AddXY(weatherData.Hourly.Time.ElementAt(i), weatherData.Hourly.Temperature2m.ElementAt(i));
                 rainSeries.Points.AddXY(weatherData.Hourly.Time.ElementAt(i), weatherData.Hourly.Rain.ElementAt(i));
                 windSeries.Points.AddXY(weatherData.Hourly.Time.ElementAt(i), weatherData.Hourly.WindSpeed10m.ElementAt(i));
+                humiditySeries.Points.AddXY(weatherData.Hourly.Time.ElementAt(i), weatherData.Hourly.RelativeHumidity2m.ElementAt(i));
                 //visibilitySeries.Points.AddY(weatherData.Hourly.Visibility.ElementAt(i));
             }
 

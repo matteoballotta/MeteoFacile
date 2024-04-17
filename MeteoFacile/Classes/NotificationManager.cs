@@ -1,6 +1,7 @@
 using Microsoft.Toolkit.Uwp.Notifications;
 
-namespace MeteoFacile {
+namespace MeteoFacile
+{
     public class NotificationManager
     {
         public static void ShowToastNotification(string title, string content)

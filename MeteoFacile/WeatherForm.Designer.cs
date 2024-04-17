@@ -38,15 +38,20 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.ShownCityNameLabel = new System.Windows.Forms.Label();
             this.HighestTemperatureLabel = new System.Windows.Forms.Label();
             this.LowestTemperatureLabel = new System.Windows.Forms.Label();
             this.RainChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.WeatherChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.WindChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.HumidityChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.RainChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.WeatherChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.WindChart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.HumidityChart)).BeginInit();
             this.SuspendLayout();
             // 
             // ShownCityNameLabel
@@ -82,14 +87,14 @@
             this.RainChart.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.RainChart.Legends.Add(legend1);
-            this.RainChart.Location = new System.Drawing.Point(15, 363);
+            this.RainChart.Location = new System.Drawing.Point(0, 363);
             this.RainChart.Name = "RainChart";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StepLine;
             series1.Legend = "Legend1";
             series1.Name = "Pioggia";
             this.RainChart.Series.Add(series1);
-            this.RainChart.Size = new System.Drawing.Size(678, 300);
+            this.RainChart.Size = new System.Drawing.Size(465, 300);
             this.RainChart.TabIndex = 9;
             this.RainChart.Text = "chart1";
             // 
@@ -125,7 +130,7 @@
             this.WindChart.ChartAreas.Add(chartArea3);
             legend3.Name = "Legend1";
             this.WindChart.Legends.Add(legend3);
-            this.WindChart.Location = new System.Drawing.Point(690, 363);
+            this.WindChart.Location = new System.Drawing.Point(465, 363);
             this.WindChart.Name = "WindChart";
             this.WindChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Bright;
             series4.ChartArea = "ChartArea1";
@@ -133,15 +138,35 @@
             series4.Legend = "Legend1";
             series4.Name = "Velocità vento";
             this.WindChart.Series.Add(series4);
-            this.WindChart.Size = new System.Drawing.Size(678, 300);
+            this.WindChart.Size = new System.Drawing.Size(465, 300);
             this.WindChart.TabIndex = 13;
             this.WindChart.Text = "chart1";
+            // 
+            // HumidityChart
+            // 
+            this.HumidityChart.BackColor = System.Drawing.Color.Transparent;
+            chartArea4.Name = "ChartArea1";
+            this.HumidityChart.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.HumidityChart.Legends.Add(legend4);
+            this.HumidityChart.Location = new System.Drawing.Point(921, 363);
+            this.HumidityChart.Name = "HumidityChart";
+            this.HumidityChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Fire;
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StepLine;
+            series5.Legend = "Legend1";
+            series5.Name = "Umidità";
+            this.HumidityChart.Series.Add(series5);
+            this.HumidityChart.Size = new System.Drawing.Size(465, 300);
+            this.HumidityChart.TabIndex = 14;
+            this.HumidityChart.Text = "chart1";
             // 
             // WeatherForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1380, 692);
+            this.Controls.Add(this.HumidityChart);
             this.Controls.Add(this.WindChart);
             this.Controls.Add(this.LowestTemperatureLabel);
             this.Controls.Add(this.HighestTemperatureLabel);
@@ -154,6 +179,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.RainChart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.WeatherChart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.WindChart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.HumidityChart)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -166,5 +192,6 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart RainChart;
         private System.Windows.Forms.DataVisualization.Charting.Chart WeatherChart;
         private System.Windows.Forms.DataVisualization.Charting.Chart WindChart;
+        private System.Windows.Forms.DataVisualization.Charting.Chart HumidityChart;
     }
 }

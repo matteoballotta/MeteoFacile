@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace MeteoFacile.Classes
 {
+    // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
     public class Hourly
     {
         [JsonProperty("time")]
@@ -19,6 +20,9 @@ namespace MeteoFacile.Classes
 
         [JsonProperty("wind_speed_10m")]
         public List<double> WindSpeed10m { get; set; }
+
+        [JsonProperty("relative_humidity_2m")]
+        public List<int> RelativeHumidity2m { get; set; }
     }
 
     public class HourlyUnits
@@ -37,6 +41,9 @@ namespace MeteoFacile.Classes
 
         [JsonProperty("wind_speed_10m")]
         public string WindSpeed10m { get; set; }
+
+        [JsonProperty("relative_humidity_2m")]
+        public string RelativeHumidity2m { get; set; }
     }
 
     public class WeatherData
@@ -68,4 +75,6 @@ namespace MeteoFacile.Classes
         [JsonProperty("hourly")]
         public Hourly Hourly { get; set; }
     }
+
+
 }
