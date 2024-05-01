@@ -76,7 +76,7 @@ namespace MeteoFacile
                 else if (weatherData.Hourly.WindSpeed10m.Any(windSpeed => windSpeed > 30))
                     content = "Presta attenzione, oggi il vento assumerà velocità estreme!";
                 
-                NotificationManager.ShowToastNotification("Notifica", content);
+                NotificationManager.ShowToastNotification("Notifica", content, "Resources\\weatherIcon.png");
             }
         }
 
