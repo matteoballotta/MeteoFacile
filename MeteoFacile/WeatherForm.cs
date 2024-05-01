@@ -1,5 +1,6 @@
 ﻿using MeteoFacile.Classes;
 using Newtonsoft.Json;
+using System;
 using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
@@ -13,7 +14,23 @@ namespace MeteoFacile
         public WeatherForm(City city)
         {
             InitializeComponent();
+            rangeToggleBtn.Tag = true;
             WeatherUpdate(city.DisplayName, double.Parse(city.Lat), double.Parse(city.Lon));
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if((bool)rangeToggleBtn.Tag)
+            {
+                rangeToggleBtn.Text = "Meteo di oggi";
+                setWeatherRange();
+            }
+            else
+            {
+                rangeToggleBtn.Text = "Meteo settimanale";
+                setWeatherRange(DateTime.Today.ToString("yyyy-MM-dd"));
+            }
+            rangeToggleBtn.Tag = !(bool)rangeToggleBtn.Tag;
         }
 
         private async void WeatherUpdate(string displayName, double latitude, double longitude)
@@ -30,31 +47,7 @@ namespace MeteoFacile
                 return;
             }
 
-            // Ottenimento delle serie dei grafici
-            Series temperatureSeries = WeatherChart.Series["Temperatura"];
-            temperatureSeries.Points.Clear();
-
-            Series visibilitySeries = WeatherChart.Series["Visibilita"];
-            visibilitySeries.Points.Clear();
-
-            Series rainSeries = RainChart.Series["Pioggia"];
-            rainSeries.Points.Clear();
-
-            Series windSeries = WindChart.Series["Velocità vento"];
-            windSeries.Points.Clear();
-
-            Series humiditySeries = HumidityChart.Series["Umidità"];
-            humiditySeries.Points.Clear();
-
-            // Aggiunta dei dati ai grafici
-            for (int i = 0; i < weatherData.Hourly.Time.Count; i++)
-            {
-                temperatureSeries.Points.AddXY(weatherData.Hourly.Time.ElementAt(i), weatherData.Hourly.Temperature2m.ElementAt(i));
-                rainSeries.Points.AddXY(weatherData.Hourly.Time.ElementAt(i), weatherData.Hourly.Rain.ElementAt(i));
-                windSeries.Points.AddXY(weatherData.Hourly.Time.ElementAt(i), weatherData.Hourly.WindSpeed10m.ElementAt(i));
-                humiditySeries.Points.AddXY(weatherData.Hourly.Time.ElementAt(i), weatherData.Hourly.RelativeHumidity2m.ElementAt(i));
-                //visibilitySeries.Points.AddY(weatherData.Hourly.Visibility.ElementAt(i));
-            }
+            setWeatherRange(DateTime.Today.ToString("yyyy-MM-dd"));
 
             // Inserimento dati di massima e minima temperatura misurata
             double highestTemperature = weatherData.Hourly.Temperature2m.Max();
@@ -86,5 +79,39 @@ namespace MeteoFacile
                 NotificationManager.ShowToastNotification("Notifica", content);
             }
         }
+
+        private void setWeatherRange(string date = null)
+        {
+            // Ottenimento delle serie dei grafici
+            Series temperatureSeries = WeatherChart.Series["Temperatura"];
+            temperatureSeries.Points.Clear();
+
+            Series visibilitySeries = WeatherChart.Series["Visibilita"];
+            visibilitySeries.Points.Clear();
+
+            Series rainSeries = RainChart.Series["Pioggia"];
+            rainSeries.Points.Clear();
+
+            Series windSeries = WindChart.Series["Velocità vento"];
+            windSeries.Points.Clear();
+
+            Series humiditySeries = HumidityChart.Series["Umidità"];
+            humiditySeries.Points.Clear();
+
+
+            int startIdx = date != null ? weatherData.Hourly.Time.FindIndex(x => x.Contains(date)) : 0;
+            int endIdx = date != null ? startIdx + 23 : weatherData.Hourly.Time.Count;
+
+            // Aggiunta dei dati ai grafici
+            for (int i = startIdx; i < endIdx; i++)
+            {
+                temperatureSeries.Points.AddXY(weatherData.Hourly.Time.ElementAt(i), weatherData.Hourly.Temperature2m.ElementAt(i));
+                rainSeries.Points.AddXY(weatherData.Hourly.Time.ElementAt(i), weatherData.Hourly.Rain.ElementAt(i));
+                windSeries.Points.AddXY(weatherData.Hourly.Time.ElementAt(i), weatherData.Hourly.WindSpeed10m.ElementAt(i));
+                humiditySeries.Points.AddXY(weatherData.Hourly.Time.ElementAt(i), weatherData.Hourly.RelativeHumidity2m.ElementAt(i));
+                //visibilitySeries.Points.AddY(weatherData.Hourly.Visibility.ElementAt(i));
+            }
+        }
+
     }
 }
