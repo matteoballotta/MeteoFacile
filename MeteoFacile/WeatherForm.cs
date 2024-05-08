@@ -1,34 +1,40 @@
 ﻿using MeteoFacile.Classes;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using System.Windows.Forms.VisualStyles;
 
 namespace MeteoFacile
 {
     public partial class WeatherForm : Form
     {
         private WeatherData weatherData;
+        private List<String> availableDates;
+        private string lastDate;
 
         public WeatherForm(City city)
         {
             InitializeComponent();
             rangeToggleBtn.Tag = true;
+            lastDate = null;
             WeatherUpdate(city.DisplayName, double.Parse(city.Lat), double.Parse(city.Lon));
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if((bool)rangeToggleBtn.Tag)
+            if ((bool)rangeToggleBtn.Tag)
             {
+                lastDate = (string)DateCmbBox.SelectedItem;
                 rangeToggleBtn.Text = "Meteo di oggi";
-                setWeatherRange();
+                SetWeatherRange();
             }
             else
             {
                 rangeToggleBtn.Text = "Meteo settimanale";
-                setWeatherRange(DateTime.Today.ToString("yyyy-MM-dd"));
+                SetWeatherRange(lastDate == null ? DateTime.Today.ToString("yyyy-MM-dd") : lastDate);
             }
             rangeToggleBtn.Tag = !(bool)rangeToggleBtn.Tag;
         }
@@ -47,7 +53,7 @@ namespace MeteoFacile
                 return;
             }
 
-            setWeatherRange(DateTime.Today.ToString("yyyy-MM-dd"));
+            SetWeatherRange(DateTime.Today.ToString("yyyy-MM-dd"));
 
             // Inserimento dati di massima e minima temperatura misurata
             double highestTemperature = weatherData.Hourly.Temperature2m.Max();
@@ -61,8 +67,16 @@ namespace MeteoFacile
             LowestTemperatureLabel.Text = $"La temperatura più alta ({highestTemperature}° C) è stata registrata alle {highestTemperatureTime}.";
             HighestTemperatureLabel.Text = $"La temperatura più bassa ({lowestTemperature}° C) è stata registrata alle {lowestTemperatureTime}.";
 
+            SetComboBoxContent();
             SendWeatherNotifications();
-        
+
+        }
+
+        private void SetComboBoxContent()
+        {
+            availableDates = new List<String>();
+            availableDates = weatherData.Hourly.Time.Select(date => date.Substring(0, 10)).Distinct().ToList();
+            DateCmbBox.DataSource = availableDates;
         }
 
         private void SendWeatherNotifications () {
@@ -80,7 +94,7 @@ namespace MeteoFacile
             }
         }
 
-        private void setWeatherRange(string date = null)
+        private void SetWeatherRange(string date = null)
         {
             // Ottenimento delle serie dei grafici
             Series temperatureSeries = WeatherChart.Series["Temperatura"];
@@ -113,5 +127,9 @@ namespace MeteoFacile
             }
         }
 
+        private void DateCmbBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetWeatherRange((string)DateCmbBox.SelectedItem);
+        }
     }
 }

@@ -49,6 +49,7 @@
             this.WindChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.HumidityChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.rangeToggleBtn = new System.Windows.Forms.Button();
+            this.DateCmbBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.RainChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.WeatherChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.WindChart)).BeginInit();
@@ -173,12 +174,22 @@
             this.rangeToggleBtn.UseVisualStyleBackColor = true;
             this.rangeToggleBtn.Click += new System.EventHandler(this.button1_Click);
             // 
+            // DateCmbBox
+            // 
+            this.DateCmbBox.FormattingEnabled = true;
+            this.DateCmbBox.Location = new System.Drawing.Point(1161, 142);
+            this.DateCmbBox.Name = "DateCmbBox";
+            this.DateCmbBox.Size = new System.Drawing.Size(116, 21);
+            this.DateCmbBox.TabIndex = 16;
+            this.DateCmbBox.SelectedIndexChanged += new System.EventHandler(this.DateCmbBox_SelectedIndexChanged);
+            // 
             // WeatherForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkSalmon;
             this.ClientSize = new System.Drawing.Size(1380, 692);
+            this.Controls.Add(this.DateCmbBox);
             this.Controls.Add(this.rangeToggleBtn);
             this.Controls.Add(this.HumidityChart);
             this.Controls.Add(this.WindChart);
@@ -208,5 +219,6 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart WindChart;
         private System.Windows.Forms.DataVisualization.Charting.Chart HumidityChart;
         private System.Windows.Forms.Button rangeToggleBtn;
+        private System.Windows.Forms.ComboBox DateCmbBox;
     }
 }
