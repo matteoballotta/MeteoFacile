@@ -82,15 +82,27 @@ namespace MeteoFacile
         private void SendWeatherNotifications () {
             if (weatherData != null && weatherData.Hourly != null) {
                 string content = "Nessun evento atmosferico estremo segnalato";
+                string imageUri = "Resources\\weatherIcon.png";
 
                 if (weatherData.Hourly.Temperature2m.Any (temperature => temperature > 40 || temperature < 0))
+                {
                     content = "È prevista una temperatura fuori dal normale in gionrnata!";
-                else if (weatherData.Hourly.Rain.Any (rain => rain > 20) )
-                    content = "Potrebbe piovere!";
-                else if (weatherData.Hourly.WindSpeed10m.Any(windSpeed => windSpeed > 30))
-                    content = "Presta attenzione, oggi il vento assumerà velocità estreme!";
+                    imageUri = "Resources\\temperature_estreme.jpg";
+                }
                 
-                NotificationManager.ShowToastNotification("Notifica", content, "Resources\\weatherIcon.png");
+                else if (weatherData.Hourly.Rain.Any (rain => rain > 20))
+                {
+                    content = "Potrebbe piovere!";
+                    imageUri = "Resources\\pioggia.jpg";
+                }
+           
+                else if (weatherData.Hourly.WindSpeed10m.Any(windSpeed => windSpeed > 30))
+                {
+                    content = "Presta attenzione, oggi il vento assumerà velocità estreme!";
+                    imageUri = "Resources\\vento.jpg";
+                }
+                
+                NotificationManager.ShowToastNotification("Notifica", content, imageUri);
             }
         }
 
